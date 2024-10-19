@@ -3,13 +3,18 @@ import torch
 from torch import nn
 
 def create_model():
-    # your code here
+    model = nn.Sequential(
+        nn.Linear(784, 256, bias=True),  # First linear layer: 784 -> 256
+        nn.ReLU(),                       # Activation function
+        nn.Linear(256, 16, bias=True),   # Second linear layer: 256 -> 16
+        nn.ReLU(),                       # Activation function
+        nn.Linear(16, 10, bias=True)     # Third linear layer: 16 -> 10
+        # The last layer has no activation function
+    )
     # return model instance (None is just a placeholder)
 
-    return None
+    return model
 
 def count_parameters(model):
-    # your code here
-    # return integer number (None is just a placeholder)
+    return sum(p.numel() for p in model.parameters())
     
-    return None
